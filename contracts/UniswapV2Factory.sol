@@ -6,7 +6,6 @@ import './UniswapV2Pair.sol';
 contract UniswapV2Factory is IUniswapV2Factory {
     address public feeTo;
     address public feeToSetter;
-     address public treasury;
 
     //Edited
     bytes32 public constant INIT_CODE_HASH = keccak256(abi.encodePacked(type(UniswapV2Pair).creationCode));
@@ -18,7 +17,6 @@ contract UniswapV2Factory is IUniswapV2Factory {
 
     constructor(address _feeToSetter) public {
         feeToSetter = _feeToSetter;
-        treasury = _feeToSetter;
     }
 
     function allPairsLength() external view returns (uint) {
@@ -50,13 +48,5 @@ contract UniswapV2Factory is IUniswapV2Factory {
     function setFeeToSetter(address _feeToSetter) external {
         require(msg.sender == feeToSetter, 'UniswapV2: FORBIDDEN');
         feeToSetter = _feeToSetter;
-    }
-     function updateTreasuryWallet(address _treasuryWallet) external {
-        require(msg.sender == feeToSetter, 'UniswapV2: FORBIDDEN');
-        treasury = _treasuryWallet;
-    }
-
-    function treasuryad()external view returns(address){
-        return treasury;
     }
 }
