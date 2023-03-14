@@ -1,7 +1,8 @@
-/.env
-/artifacts
-/cache
-/node_modules
-/README.md
-/scripts
-/test
+.env
+artifacts
+node_modules
+cache
+test
+Backupcontracts
+scripts
+
