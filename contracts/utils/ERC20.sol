@@ -1,12 +1,13 @@
+//SPDX-License-Identifier: MIT
 pragma solidity =0.6.6;
 
 import '../libraries/SafeMath.sol';
 
-contract DeflatingERC20 {
+contract ERC20 {
     using SafeMath for uint;
 
-    string public constant name = 'Deflating Test Token';
-    string public constant symbol = 'DTT';
+    string public constant name = 'Test Token';
+    string public constant symbol = 'TT';
     uint8 public constant decimals = 18;
     uint  public totalSupply;
     mapping(address => uint) public balanceOf;
@@ -55,12 +56,9 @@ contract DeflatingERC20 {
     }
 
     function _transfer(address from, address to, uint value) private {
-        uint burnAmount = value / 100;
-        _burn(from, burnAmount);
-        uint transferAmount = value.sub(burnAmount);
-        balanceOf[from] = balanceOf[from].sub(transferAmount);
-        balanceOf[to] = balanceOf[to].add(transferAmount);
-        emit Transfer(from, to, transferAmount);
+        balanceOf[from] = balanceOf[from].sub(value);
+        balanceOf[to] = balanceOf[to].add(value);
+        emit Transfer(from, to, value);
     }
 
     function approve(address spender, uint value) external returns (bool) {

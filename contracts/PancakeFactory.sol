@@ -19,6 +19,9 @@ contract PancakeFactory is IPancakeFactory {
         feeToSetter = _feeToSetter;
     }
 
+        //for testing only to deployment
+    bytes32 public constant INIT_CODE_HASH = keccak256(abi.encodePacked(type(PancakePair).creationCode));
+
     function allPairsLength() external view returns (uint) {
         return allPairs.length;
     }
